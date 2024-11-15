@@ -3,3 +3,4 @@
 cp hyprpaper.conf.template hyprpaper.conf
 cp monitor.conf.template monitor.conf
 cp alt_sound.conf.template alt_sound.conf
+cp wayland_toggle.template wayland_toggle.conf
