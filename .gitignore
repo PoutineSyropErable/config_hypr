@@ -1,5 +1,7 @@
 
-machine_unique/hyprpaper.conf
+hyprpaper.conf
+
+# machine_unique/hyprpaper.conf
 machine_unique/monitor.conf
 machine_unique/alt_sound.conf
 machine_unique/brightness_sound.conf
