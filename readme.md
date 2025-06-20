@@ -9,3 +9,7 @@ You can modify the non template version, as it will allow you to
 use the same git branch for multiple machine. Saving unneeded manual merge of different branches
 
 Change how machine unique and machine is handled
+use softlink to bind your machine to machine.
+
+ln -s desktop machine
+ln -s laptop machine
