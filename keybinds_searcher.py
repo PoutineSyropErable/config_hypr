@@ -5,6 +5,29 @@ import os
 
 MODIFIER_MAP = {1: "Shift", 4: "Control", 8: "Alt", 64: "Super"}
 
+# You can add your comments here for any keybind combo
+COMMENT_OVERRIDES = {
+    # workspaces
+    "Super + 1": "move to workspace 1 (1 on first monitor)",
+    "Super + Shift + 1": "move current window to workspace 1 (1 on first monitor)",
+    "Alt + 1": "move to workspace 11 (1 on second monitor)",
+    "Alt + Shift + 1": "move current window to workspace 11 ( 1 on second monitor)",
+    "Alt + Super + 1": "move to workspace 21 (1 on third monitor)",
+    "Alt + Super + Shift + 1": "move current window to workspace 21 ( 1 on third monitor)",
+    # Main
+    "Super + Q": "Hyprland keybinds searcher help",
+    "Super + D": "Application Launcher. Search",
+    "Super + W": "Open Internet Browser (Firefox/Zen/LibreWolf)",
+    "Super + Return": "Open a terminal emulator. A shell. Cmd. Command",
+    "Super + semicolon": "Close focused window. ; Exit, Kill",
+    # Other terminals
+    "Super + P": "Powermenu, log off, shutdown, reboot",
+    "Super + H": "Open a terminal emulator. A shell. Cmd. Command",
+    "Super + Less": "Open a terminal (no tmux)",
+    "Shift + Super + Less": "Open a different terminal (no tmux)",
+    # Add more as needed
+}
+
 
 def modmask_to_modifiers(modmask):
     modmask = int(modmask)
@@ -45,10 +68,16 @@ def format_bind_line(bind):
     cmd, arg = bind[1]
 
     combo = " + ".join(keys)
+    base = f"{combo} = {cmd}"
     if arg:
-        return f"{combo} = {cmd} {arg}".strip()
-    else:
-        return f"{combo} = {cmd}"
+        base += f" {arg}"
+
+    # Check for manual comment
+    comment = COMMENT_OVERRIDES.get(combo)
+    if comment:
+        base += f"    # {comment}"
+
+    return base.strip()
 
 
 def main():
@@ -68,7 +97,6 @@ def main():
         tmpfile.flush()
         tmpname = tmpfile.name
 
-    # Run fzf on the tempfile
     try:
         selected = subprocess.check_output(["fzf", "--ansi"], text=True, stdin=open(tmpname))
         print(f"Selected bind:\n{selected.strip()}")
