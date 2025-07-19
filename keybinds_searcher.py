@@ -26,6 +26,7 @@ COMMENT_OVERRIDES = {
     "Super + Less": "Open a terminal (no tmux)",
     "Shift + Super + Less": "Open a different terminal (no tmux)",
     # Add more as needed
+    "Super + F1": "Buggy keyboard test",
 }
 
 
