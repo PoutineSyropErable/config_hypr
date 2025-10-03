@@ -1,7 +1,0 @@
-$MONITOR1 = eDP-1
-$MONITOR2 = HDMI-A-1
-$MONITOR3 = DP-1
-
-monitor=,preferred,auto,auto
-monitor = $MONITOR1, 1920x1200, 0x0, 1
-monitor = $MONITOR2, preferred, auto, auto
